@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Routes, Link, useNavigate } from 'react-router-dom';
+import { Route, Routes, Link, BrowserRouter, Router } from 'react-router-dom';
 import Home from './components/Home';
 import About from './components/About';
 import Contact from './components/Contact';
@@ -7,9 +7,11 @@ import Services from './components/Services';
 import Lifecycle from './components/Lifecycle';
 import ErrorPage from './ErrorPage';
 import Favorite from './components/Favorite';
+import Datafetch from './components/Datafetch';
+import Header from './components/Header';
 
 const App = () => {
-  const navigate = useNavigate();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -44,18 +46,26 @@ const App = () => {
           <li>
             <Link to="/lifecycle">Lifecycle</Link>
           </li>
+          <li>
+            <Link to="/datafetch">Datafetch</Link>
+          </li>
         </ul>
       </nav>
 
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route exact path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/services" element={<Services />} />
         <Route path="/lifecycle" element={<Lifecycle />} />
+        <Route path="/datafetch" element={<Datafetch />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
-      <Favorite />
+
+      <>
+        <Favorite />
+        <Header />
+      </>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-const Favorite = ({ contact }) => {
-  const [favorite, setFavorite] = useState(contact?.favorite || false);
+const Favorite = () => {
+  const [favorite, setFavorite] = useState(false);
 
   const handleToggle = () => {
     setFavorite((prevFavorite) => !prevFavorite);
